@@ -133,7 +133,7 @@ disp(no_edges);
 % clustering_coef_wu_sign.m (WU signed networks).
 
 C = clustering_coef_bd(CIJ);
-plot_measure(C,'clustering coefficent','clustering coefficent')
+plot_measure(C,'clustering coefficent','clustering coefficent');
 
 
 % Transitivity: 
@@ -152,7 +152,9 @@ disp(transitiv);
 % efficiency_bin.m (BU, BD networks); efficiency_wei.m (WU, WD networks).
 % Contributor: MR.
 
-Eglob=efficiency_bin(CIJ)
+Eglob=efficiency_bin(CIJ);
+g_effi = ['global efficiency = ',num2str(Eglob)];
+disp(g_effi);
 Eloc=efficiency_bin(CIJ,1);
 plot_measure(Eloc,'Local Efficiency','local efficiency');
 
@@ -228,11 +230,18 @@ ylabel('Community index');
 % Assortativity: 
 % assortativity_bin.m (BU, BD networks).
 
-r = assortativity_bin(CIJ,0)
-r = assortativity_bin(CIJ,1)
-r = assortativity_bin(CIJ,2)
-r = assortativity_bin(CIJ,3)
-r = assortativity_bin(CIJ,4)
+r = assortativity_bin(CIJ,1);
+out_in=['out-degree/in-degree correlation = ', num2str(r)];
+disp(out_in);
+r = assortativity_bin(CIJ,2);
+in_out = ['in-degree/out-degree correlation = ', num2str(r)];
+disp(in_out);
+r = assortativity_bin(CIJ,3);
+out_out=['out-degree/out-degree correlation = ', num2str(r)];
+disp(out_out);
+r = assortativity_bin(CIJ,4);
+in_in=['in-degree/in-degree correlation = ', num2str(r)];
+disp(in_in);
 
 % Rich club coefficient: 
 % rich_club_bu.m (BU networks); rich_club_bd.m (BD networks).
@@ -241,12 +250,12 @@ R = rich_club_bd(CIJ);
 figure();
 subplot(3,1,1)
     stem(R)
-    xlabel('degree of nodes')
+    xlabel('degree of nodes');
     ylabel('rich club coeff');
     title('rich club coefficent');
 subplot(3,1,2)
     histogram(R);
-    xlabel('rich club coeff')
+    xlabel('rich club coeff');
     ylabel('amount of nodes');
 subplot(3,1,3)
     boxplot(R)
@@ -255,17 +264,17 @@ subplot(3,1,3)
 % Core/periphery structure: 
 % core_periphery_dir.m (BU, BD, WU, WD networks).
 
-C = core_periphery_dir(CIJ)
+C = core_periphery_dir(CIJ);
 figure
 subplot(2,1,1)
-    stem(C)
+    stem(C);
     xlabel('node index')
     ylabel('0=periphery, 1=core');
 %    yticks([0 1]);
     title('Core/periphery structure');
 subplot(2,1,2)
     histogram(C);
-    xlabel('0=periphery, 1=core')
+    xlabel('0=periphery, 1=core');
 %    xticks([0,1]);    
     ylabel('amount of nodes');
 
